@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wireframe Portofolio Personal - Modern Dark & Light Blue</title>
+    <!-- Tailwind CSS untuk tata letak responsif cepat -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Inter & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            light: '#7dd3fc', // Biru muda pastel
+                            main: '#38bdf8',  // Biru muda cerah
+                            dark: '#0284c7',   // Biru teras
+                            bgDark: '#0b1329', // Background gelap
+                            cardDark: '#131e3a', // Card gelap
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* CSS ini disiapkan agar siap dipindahkan ke file eksternal style.css */
+        body {
+            background-color: #0b1329;
+            color: #f1f5f9;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Header & Footer Custom Light Blue */
+        .custom-header, .custom-footer {
+            background-color: #bae6fd; /* Biru muda yang segar */
+            color: #0f172a; /* Teks gelap kontras tinggi */
+        }
+
+        /* Mode Wireframe Toggle Styling */
+        body.wireframe-mode * {
+            outline: 1px dashed rgba(56, 189, 248, 0.4) !important;
+        }
+        body.wireframe-mode img, 
+        body.wireframe-mode .dummy-img {
+            filter: grayscale(100%) opacity(0.5);
+            background: #1e293b !important;
+            border: 2px dashed #38bdf8 !important;
+        }
+        body.wireframe-mode .wireframe-badge {
+            display: inline-block !important;
+        }
+
+        .wireframe-badge {
+            display: none;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            padding: 2px 6px;
+            background: #0284c7;
+            color: white;
+            border-radius: 4px;
+            font-family: monospace;
+            margin-left: 6px;
+        }
+
+        /* Smooth Transition */
+        .transition-all-custom {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-brand-bgDark text-slate-100 min-h-screen flex flex-col justify-between selection:bg-brand-main selection:text-slate-900">
+
+    <!-- Control Bar Pengubah Mode Wireframe / Visual -->
+    <div class="bg-slate-900 border-b border-slate-800 text-xs py-2 px-4 sticky top-0 z-50 flex justify-between items-center shadow-md">
+        <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-medium text-slate-300">Layout Wireframe Interactive Preview</span>
+        </div>
+        <div class="flex items-center gap-3">
+            <button id="toggleWireframeBtn" onclick="toggleWireframeMode()" class="bg-slate-800 hover:bg-slate-700 text-brand-main px-3 py-1 rounded border border-brand-main/30 flex items-center gap-1.5 transition">
+                <i class="fa-solid fa-border-all"></i>
+                <span id="wireframeBtnText">Toggle Mode Wireframe</span>
+            </button>
+            <a href="#kontak" class="hidden sm:inline-block bg-brand-main hover:bg-brand-light text-slate-900 font-semibold px-3 py-1 rounded transition">
+                Hire Me
+            </a>
+        </div>
+    </div>
+
+    <!-- HEADER & MENU NAVIGASI (Sesuai Permintaan: Warna Biru Muda) -->
+    <header class="custom-header sticky top-8 z-40 shadow-lg border-b border-sky-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo Dummy -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 bg-slate-900 text-brand-main rounded-xl flex items-center justify-center font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <div>
+                    <span class="font-extrabold text-xl tracking-tight text-slate-900">PEA<span class="text-sky-700">DEV</span></span>
+                    <span class="wireframe-badge">LOGOTYPE</span>
+                    <p class="text-[10px] text-slate-700 font-medium tracking-widest uppercase -mt-1">UI/UX & Developer</p>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-1 font-semibold text-slate-800">
+                <a href="#hero" class="px-3 py-2 rounded-lg hover:bg-sky-200/80 hover:text-sky-900 transition">Beranda <span class="wireframe-badge">NAV-1</span></a>
+                <a href="#tentang" class="px-3 py-2 rounded-lg hover:bg-sky-200/80 hover:text-sky-900 transition">Tentang Saya <span class="wireframe-badge">NAV-2</span></a>
+                <a href="#keahlian" class="px-3 py-2 rounded-lg hover:bg-sky-200/80 hover:text-sky-900 transition">Keahlian <span class="wireframe-badge">NAV-3</span></a>
+                <a href="#proyek" class="px-3 py-2 rounded-lg hover:bg-sky-200/80 hover:text-sky-900 transition">Proyek <span class="wireframe-badge">NAV-4</span></a>
+                <a href="#pengalaman" class="px-3 py-2 rounded-lg hover:bg-sky-200/80 hover:text-sky-900 transition">Pengalaman <span class="wireframe-badge">NAV-5</span></a>
+                <a href="#kontak" class="px-3 py-2 rounded-lg hover:bg-sky-200/80 hover:text-sky-900 transition">Kontak <span class="wireframe-badge">NAV-6</span></a>
+            </nav>
+
+            <!-- Actions CTA & Mobile Hamburger Toggle -->
+            <div class="flex items-center gap-3">
+                <a href="#kontak" class="hidden lg:flex items-center gap-2 bg-slate-900 text-sky-300 hover:bg-slate-800 px-4 py-2 rounded-xl text-sm font-bold shadow transition">
+                    <i class="fa-solid fa-paper-plane"></i>
+                    <span>Hubungi Saya</span>
+                </a>
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-900 hover:bg-sky-200 rounded-lg text-xl">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu Dropdown -->
+        <div id="mobileMenu" class="hidden md:hidden bg-sky-100 border-b border-sky-300 px-4 pt-2 pb-4 space-y-2">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-sky-200">Beranda</a>
+            <a href="#tentang" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-sky-200">Tentang Saya</a>
+            <a href="#keahlian" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-sky-200">Keahlian</a>
+            <a href="#proyek" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-sky-200">Proyek</a>
+            <a href="#pengalaman" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-sky-200">Pengalaman</a>
+            <a href="#kontak" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-md font-medium text-slate-800 hover:bg-sky-200">Kontak</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+
+        <!-- BAGIAN 1: HERO SECTION -->
+        <section id="hero" class="relative py-16 md:py-24 border-b border-slate-800 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Text Content Left -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="inline-flex items-center gap-2 bg-brand-main/10 border border-brand-main/30 text-brand-main px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-brand-main"></span>
+                            <span>Tersedia untuk Proyek Freelance & Full-time</span>
+                            <span class="wireframe-badge">HERO-BADGE</span>
+                        </div>
+                        
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                            Halo, Saya <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-light to-brand-main">Radhitya Pea Nathan P.</span>
+                            <span class="wireframe-badge">HERO-TITLE</span>
+                        </h1>
+                        
+                        <p class="text-slate-400 text-lg sm:text-xl max-w-2xl leading-relaxed">
+                            Seorang <strong class="text-slate-200">Full-Stack Web Developer & Data Analyst</strong> Helping businesses make smarter decisions through data
+                            <span class="wireframe-badge">HERO-DESC</span>
+                        </p>
+
+                        <!-- Action Buttons -->
+                        <div class="flex flex-wrap items-center gap-4 pt-2">
+                            <a href="#proyek" class="bg-brand-main hover:bg-brand-light text-slate-950 font-bold px-6 py-3.5 rounded-xl transition shadow-lg shadow-brand-main/20 flex items-center gap-2">
+                                <i class="fa-solid fa-briefcase"></i>
+                                <span>Lihat Portofolio</span>
+                                <span class="wireframe-badge">CTA-PRIMARY</span>
+                            </a>
+                            <a href="#kontak" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3.5 rounded-xl border border-slate-700 transition flex items-center gap-2">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Unduh CV</span>
+                                <span class="wireframe-badge">CTA-SECONDARY</span>
+                            </a>
+                        </div>
+
+                        <!-- Mini Stats Bar -->
+                        <div class="pt-8 border-t border-slate-800 grid grid-cols-3 gap-4 text-center sm:text-left">
+                            <div>
+                                <h4 class="text-2xl font-bold text-brand-light">5+ Tahun</h4>
+                                <p class="text-xs text-slate-400">Pengalaman Kerja</p>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-brand-light">40+ Proyek</h4>
+                                <p class="text-xs text-slate-400">Selesai Dikerjakan</p>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-bold text-brand-light">99%</h4>
+                                <p class="text-xs text-slate-400">Kepuasan Klien</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dummy Photo Container Right -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-md">
+                            <!-- Glow Background Accent -->
+                            <div class="absolute -inset-1 bg-gradient-to-r from-brand-main to-sky-600 rounded-3xl blur-lg opacity-30"></div>
+                            
+                            <!-- Frame & Image Placeholder -->
+                            <div class="relative bg-brand-cardDark border-2 border-slate-700 rounded-3xl p-4 shadow-2xl">
+                                <div class="aspect-square rounded-2xl overflow-hidden bg-slate-800 flex flex-col items-center justify-center relative group dummy-img">
+                                    <img src="pea1.jpg.jpeg" alt="Foto Radhitya Pea" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-slate-900/40 flex flex-col items-center justify-end p-4 text-center">
+                                        <span class="bg-slate-900/80 backdrop-blur text-brand-light text-xs font-mono px-3 py-1 rounded-full border border-brand-main/30">
+                                            [PHOTO PEA]
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex justify-between items-center px-2">
+                                    <div class="text-xs text-slate-400 font-mono">Dimensions: 600x600px</div>
+                                    <div class="flex gap-2 text-brand-main">
+                                        <i class="fa-brands fa-github text-lg hover:text-white cursor-pointer"></i>
+                                        <i class="fa-brands fa-linkedin text-lg hover:text-white cursor-pointer"></i>
+                                        <i class="fa-brands fa-dribbble text-lg hover:text-white cursor-pointer"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN 2: TENTANG SAYA (ABOUT ME) -->
+        <section id="tentang" class="py-20 border-b border-slate-800 bg-slate-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-main font-semibold text-sm tracking-wider uppercase">Mengenal Lebih Dekat</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Tentang Saya <span class="wireframe-badge">SECTION-ABOUT</span></h2>
+                    <div class="w-16 h-1 bg-brand-main mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Image Secondary Placeholder -->
+                    <div class="lg:col-span-5">
+                        <div class="bg-brand-cardDark p-3 rounded-2xl border border-slate-700 shadow-lg">
+                            <div class="aspect-[4/3] bg-slate-800 rounded-xl overflow-hidden relative dummy-img">
+                                <img src="pea2.jpg.avif" alt="About Workspace Dummy" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Info & Bio -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <h3 class="text-2xl font-bold text-white">
+                            Seseorang yang berdedikasi tinggi membangun solusi web modern yang efisien & estetis.
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed">
+                            Saya adalah seorang data analyst dengan latar belakang Pendidikan science data. Selama lebih dari 5 tahun, saya telah bekerja dengan berbagai klien lokal maupun internasional.
+                        </p>
+                        <p class="text-slate-400 leading-relaxed">
+                            Fokus utama saya mencakup mengubah data menjadi insight yang membantu pengambilan keputusan yang lebih tepat.
+                        </p>
+
+                        <!-- Key Highlights Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                            <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-start gap-3">
+                                <i class="fa-solid fa-laptop-code text-brand-main text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">Clean & Scalable Code</h4>
+                                    <p class="text-xs text-slate-400">Kode terstruktur ramah perawatan jangka panjang.</p>
+                                </div>
+                            </div>
+                            <div class="p-4 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-start gap-3">
+                                <i class="fa-solid fa-compass-drafting text-brand-main text-xl mt-1"></i>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">UI/UX Mindset</h4>
+                                    <p class="text-xs text-slate-400">Desain berpusat pada kenyamanan pengguna.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN 3: KEAHLIAN / SKILLS & TECH STACK (Fitur Tambahan Relevan) -->
+        <section id="keahlian" class="py-20 border-b border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-main font-semibold text-sm tracking-wider uppercase">Spesialisasi & Alat</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Keahlian Utama <span class="wireframe-badge">SECTION-SKILLS</span></h2>
+                    <div class="w-16 h-1 bg-brand-main mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1: Frontend -->
+                    <div class="bg-brand-cardDark p-6 rounded-2xl border border-slate-800 hover:border-brand-main/50 transition">
+                        <div class="w-12 h-12 bg-brand-main/10 text-brand-main rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Frontend Development</h3>
+                        <p class="text-slate-400 text-sm mb-6">Membangun antarmuka interaktif yang responsif di semua perangkat.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">HTML5 / CSS3</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">JavaScript (ES6+)</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">React.js</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Tailwind CSS</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Vue.js</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Backend -->
+                    <div class="bg-brand-cardDark p-6 rounded-2xl border border-slate-800 hover:border-brand-main/50 transition">
+                        <div class="w-12 h-12 bg-brand-main/10 text-brand-main rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-server"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Backend & Database</h3>
+                        <p class="text-slate-400 text-sm mb-6">Merancang logika server, REST API, dan arsitektur basis data terstruktur.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Node.js</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Express</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">PHP / Laravel</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">MySQL</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">PostgreSQL</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: UI/UX & Tools -->
+                    <div class="bg-brand-cardDark p-6 rounded-2xl border border-slate-800 hover:border-brand-main/50 transition">
+                        <div class="w-12 h-12 bg-brand-main/10 text-brand-main rounded-xl flex items-center justify-center text-2xl mb-4">
+                            <i class="fa-solid fa-pen-ruler"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Desain & Alat Kerja</h3>
+                        <p class="text-slate-400 text-sm mb-6">Prototipe desain cepat dan pengelolaan alur kerja pengembangan modern.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Figma</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Wireframing</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Git / GitHub</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Docker</span>
+                            <span class="px-2.5 py-1 bg-slate-800 text-brand-light text-xs font-mono rounded">Vite</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN 4: PROYEK / PORTOFOLIO -->
+        <section id="proyek" class="py-20 border-b border-slate-800 bg-slate-900/50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-main font-semibold text-sm tracking-wider uppercase">Karya Terbaru</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Proyek Terpilih <span class="wireframe-badge">SECTION-PROJECTS</span></h2>
+                    <div class="w-16 h-1 bg-brand-main mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <!-- Category Filters Dummy -->
+                <div class="flex justify-center flex-wrap gap-2 mb-12">
+                    <button class="px-4 py-2 rounded-xl bg-brand-main text-slate-950 font-semibold text-sm">Semua Proyek</button>
+                    <button class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition">Web App</button>
+                    <button class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition">UI/UX Design</button>
+                    <button class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-sm transition">Mobile API</button>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="bg-brand-cardDark rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-main/40 transition group">
+                        <div class="aspect-video bg-slate-800 relative overflow-hidden dummy-img">
+                            <img src="https://placehold.co/600x400/0f172a/38bdf8?text=Project+1:+E-Commerce+Dashboard" alt="Project 1 Dummy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute top-3 right-3 bg-slate-900/80 text-brand-light text-xs px-2.5 py-1 rounded-md font-mono">
+                                Web App
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-main transition">FinTech Analytics Dashboard</h3>
+                            <p class="text-slate-400 text-sm mb-4">Platform manajemen keuangan waktu nyata dengan kalkulasi metrik bisnis otomatis.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">React</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Tailwind</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Chart.js</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                                <a href="#" class="text-xs font-semibold text-brand-main hover:underline flex items-center gap-1">
+                                    <span>Demo Langsung</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="#" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                                    <i class="fa-brands fa-github"></i> <span>Kode Sumber</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="bg-brand-cardDark rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-main/40 transition group">
+                        <div class="aspect-video bg-slate-800 relative overflow-hidden dummy-img">
+                            <img src="https://placehold.co/600x400/0f172a/38bdf8?text=Project+2:+Healthcare+Portal" alt="Project 2 Dummy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute top-3 right-3 bg-slate-900/80 text-brand-light text-xs px-2.5 py-1 rounded-md font-mono">
+                                Fullstack
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-main transition">Healthcare Telemedicine Portal</h3>
+                            <p class="text-slate-400 text-sm mb-4">Aplikasi pemesanan konsultasi dokter dengan integrasi video call dan rekam medis.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Vue.js</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Laravel</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">MySQL</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                                <a href="#" class="text-xs font-semibold text-brand-main hover:underline flex items-center gap-1">
+                                    <span>Demo Langsung</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="#" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                                    <i class="fa-brands fa-github"></i> <span>Kode Sumber</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="bg-brand-cardDark rounded-2xl overflow-hidden border border-slate-800 hover:border-brand-main/40 transition group">
+                        <div class="aspect-video bg-slate-800 relative overflow-hidden dummy-img">
+                            <img src="https://placehold.co/600x400/0f172a/38bdf8?text=Project+3:+SaaS+Landing+Page" alt="Project 3 Dummy" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            <div class="absolute top-3 right-3 bg-slate-900/80 text-brand-light text-xs px-2.5 py-1 rounded-md font-mono">
+                                UI/UX
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-white mb-2 group-hover:text-brand-main transition">AI Content Generator SaaS</h3>
+                            <p class="text-slate-400 text-sm mb-4">Redesain antarmuka aplikasi SaaS berbasis AI dengan tingkat konversi optimis.</p>
+                            <div class="flex flex-wrap gap-1.5 mb-6">
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Figma</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Design System</span>
+                                <span class="text-[11px] font-mono px-2 py-0.5 bg-slate-800 text-slate-300 rounded">Prototyping</span>
+                            </div>
+                            <div class="flex items-center justify-between pt-4 border-t border-slate-800/80">
+                                <a href="#" class="text-xs font-semibold text-brand-main hover:underline flex items-center gap-1">
+                                    <span>Pratinjau Figma</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                                <a href="#" class="text-xs text-slate-400 hover:text-white flex items-center gap-1">
+                                    <i class="fa-brands fa-figma"></i> <span>Studi Kasus</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN 5: PENGALAMAN KERJA (Fitur Tambahan Relevan) -->
+        <section id="pengalaman" class="py-20 border-b border-slate-800">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-main font-semibold text-sm tracking-wider uppercase">Jejak Karir</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Pengalaman Kerja <span class="wireframe-badge">SECTION-EXPERIENCE</span></h2>
+                    <div class="w-16 h-1 bg-brand-main mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <!-- Timeline Items -->
+                <div class="space-y-8 relative before:absolute before:inset-0 before:left-3 md:before:left-1/2 before:-ml-0.5 before:w-0.5 before:bg-slate-800">
+                    
+                    <!-- Timeline Item 1 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-900 border-2 border-brand-main text-brand-main text-xs font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                            1
+                        </div>
+                        <div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-2rem)] bg-brand-cardDark p-6 rounded-2xl border border-slate-800 shadow">
+                            <span class="text-xs font-mono text-brand-main font-semibold">2023 - Sekarang</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Senior Frontend Engineer</h3>
+                            <p class="text-sm text-slate-400 font-medium">PT Teknologi Nusantara (Jakarta)</p>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Memimpin tim beranggotakan 5 developer dalam merancang arsitektur web aplikasi utama menggunakan React dan Next.js, meningkatkan performa loading hingga 40%.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Timeline Item 2 -->
+                    <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+                        <div class="flex items-center justify-center w-7 h-7 rounded-full bg-slate-900 border-2 border-brand-main text-brand-main text-xs font-bold shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 shadow">
+                            2
+                        </div>
+                        <div class="w-[calc(100%-2.5rem)] md:w-[calc(50%-2rem)] bg-brand-cardDark p-6 rounded-2xl border border-slate-800 shadow">
+                            <span class="text-xs font-mono text-brand-main font-semibold">2021 - 2023</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Full-Stack Web Developer</h3>
+                            <p class="text-sm text-slate-400 font-medium">Digital Creative Studio</p>
+                            <p class="text-xs text-slate-400 mt-3 leading-relaxed">
+                                Mengembangkan lebih dari 20 proyek website custom dan sistem manajemen konten untuk klien bisnis UMKM hingga korporat.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN 6: KONTAK (CONTACT) -->
+        <section id="kontak" class="py-20 bg-slate-900/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="text-brand-main font-semibold text-sm tracking-wider uppercase">Mari Berkolaborasi</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-1">Hubungi Saya <span class="wireframe-badge">SECTION-CONTACT</span></h2>
+                    <div class="w-16 h-1 bg-brand-main mx-auto mt-3 rounded-full"></div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Info Contact Left -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <h3 class="text-2xl font-bold text-white">Apakah Anda memiliki proyek baru atau tawaran kerja?</h3>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            Jangan ragu untuk menghubungi saya melalui formulir ini atau langsung melalui email dan media sosial di bawah. Saya selalu terbuka untuk mendiskusikan ide baru!
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-brand-cardDark border border-slate-800">
+                                <div class="w-10 h-10 bg-brand-main/10 text-brand-main rounded-lg flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Email Utama</p>
+                                    <p class="text-sm font-semibold text-white">peabelajar08@gmail.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-brand-cardDark border border-slate-800">
+                                <div class="w-10 h-10 bg-brand-main/10 text-brand-main rounded-lg flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Lokasi</p>
+                                    <p class="text-sm font-semibold text-white">Jawa Timur, Indonesia</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center gap-4 p-4 rounded-xl bg-brand-cardDark border border-slate-800">
+                                <div class="w-10 h-10 bg-brand-main/10 text-brand-main rounded-lg flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">WhatsApp / Telepon</p>
+                                    <p class="text-sm font-semibold text-white">+62 895-1777-1445</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form Right -->
+                    <div class="lg:col-span-7">
+                        <form onsubmit="handleFormSubmit(event)" class="bg-brand-cardDark p-8 rounded-2xl border border-slate-800 space-y-5 shadow-xl">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Nama Lengkap <span class="text-sky-400">*</span></label>
+                                    <input type="text" required placeholder="Masukkan nama Anda" class="w-full bg-slate-900 border border-slate-700 focus:border-brand-main text-white text-sm rounded-xl px-4 py-3 outline-none transition">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-300 mb-2">Alamat Email <span class="text-sky-400">*</span></label>
+                                    <input type="email" required placeholder="nama@email.com" class="w-full bg-slate-900 border border-slate-700 focus:border-brand-main text-white text-sm rounded-xl px-4 py-3 outline-none transition">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Subjek Pesan</label>
+                                <input type="text" placeholder="Proyek Pembuatan Website / Penawaran Kerja" class="w-full bg-slate-900 border border-slate-700 focus:border-brand-main text-white text-sm rounded-xl px-4 py-3 outline-none transition">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-300 mb-2">Detail Pesan <span class="text-sky-400">*</span></label>
+                                <textarea rows="4" required placeholder="Tuliskan detail ide atau kebutuhan proyek Anda di sini..." class="w-full bg-slate-900 border border-slate-700 focus:border-brand-main text-white text-sm rounded-xl px-4 py-3 outline-none transition"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-main hover:bg-brand-light text-slate-950 font-bold py-3.5 px-6 rounded-xl transition shadow-lg flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>Kirim Pesan Sekarang</span>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER (Sesuai Permintaan: Warna Biru Muda) -->
+    <footer class="custom-footer border-t border-sky-300 py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <!-- Brand & Copyright -->
+                <div class="text-center md:text-left">
+                    <div class="flex items-center justify-center md:justify-start gap-2 font-extrabold text-slate-900 text-lg">
+                        <i class="fa-solid fa-code text-sky-800"></i>
+                        <span>ALEXDEV PORTFOLIO</span>
+                        <span class="wireframe-badge">FOOTER</span>
+                    </div>
+                    <p class="text-xs text-slate-700 mt-1">
+                        &copy; 2026 Alex Pratama. Dibuat dengan HTML5, Tailwind CSS & JavaScript.
+                    </p>
+                </div>
+
+                <!-- Quick Navigation Links in Footer -->
+                <div class="flex flex-wrap justify-center gap-6 text-sm font-semibold text-slate-800">
+                    <a href="#hero" class="hover:text-sky-900 transition">Beranda</a>
+                    <a href="#tentang" class="hover:text-sky-900 transition">Tentang</a>
+                    <a href="#proyek" class="hover:text-sky-900 transition">Proyek</a>
+                    <a href="#kontak" class="hover:text-sky-900 transition">Kontak</a>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex items-center gap-4 text-slate-900">
+                    <a href="#" class="w-9 h-9 rounded-full bg-sky-200 hover:bg-slate-900 hover:text-white flex items-center justify-center transition" title="GitHub">
+                        <i class="fa-brands fa-github text-base"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-sky-200 hover:bg-slate-900 hover:text-white flex items-center justify-center transition" title="LinkedIn">
+                        <i class="fa-brands fa-linkedin-in text-base"></i>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-sky-200 hover:bg-slate-900 hover:text-white flex items-center justify-center transition" title="Instagram">
+                        <i class="fa-brands fa-instagram text-base"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT UNTUK INTERAKTIVITAS DAN MODE WIREFRAME -->
+    <script>
+        // Toggle Wireframe Blueprint Mode
+        let isWireframe = false;
+        function toggleWireframeMode() {
+            isWireframe = !isWireframe;
+            const body = document.body;
+            const btnText = document.getElementById('wireframeBtnText');
+            
+            if (isWireframe) {
+                body.classList.add('wireframe-mode');
+                btnText.textContent = 'Matikan Wireframe Grid';
+            } else {
+                body.classList.remove('wireframe-mode');
+                btnText.textContent = 'Toggle Mode Wireframe';
+            }
+        }
+
+        // Toggle Mobile Navigation Drawer
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Mock Form Submission Handling
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const notification = document.createElement('div');
+            notification.className = 'fixed bottom-6 right-6 bg-emerald-500 text-slate-950 font-bold px-6 py-4 rounded-2xl shadow-2xl z-50 flex items-center gap-3 animate-bounce';
+            notification.innerHTML = '<i class="fa-solid fa-circle-check text-xl"></i><span>Pesan Anda berhasil dikirim! (Demo)</span>';
+            document.body.appendChild(notification);
+
+            event.target.reset();
+
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
